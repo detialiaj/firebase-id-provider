@@ -1,8 +1,6 @@
-import { h } from 'preact';
 import style from './style.css';
 import Helmet from "preact-helmet";
 const Home = ({ user }) => {
-	console.log(user)
 	return (<>
 		<Helmet title="Hello ID" />
 		<section>

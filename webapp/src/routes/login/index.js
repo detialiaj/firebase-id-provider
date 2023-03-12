@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'preact/hooks'
+import { route } from 'preact-router'
 import Helmet from 'preact-helmet'
 import { auth, signInWithEmailAndPassword } from '../../init/auth'
 
 const Login = ({ user, redirectUrl }) => {
 	const email = useRef(null)
 	const password = useRef(null)
-	
+
 	const handleSubmit = async e => {
 		e.preventDefault()
 		try {
@@ -16,7 +17,7 @@ const Login = ({ user, redirectUrl }) => {
 		}
 	}
 
-	useEffect(() => user && (window.location = redirectUrl), [user])
+	useEffect(() => user && route(redirectUrl,true), [user])
 
 	if (user === null) return <>
 		<Helmet title="Hello | Login" />

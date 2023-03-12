@@ -1,7 +1,7 @@
-import { h } from 'preact';
 import { Router, Link, route } from 'preact-router';
 import { signal } from "@preact/signals";
 import { auth, onAuthStateChanged } from '../init/auth'
+import PostMessage from '../init/window-message'
 
 // Code-splitting is automated for `routes` directory
 import Home from '../routes/home';
@@ -17,6 +17,7 @@ const currentUser = signal();
 window.onload = () => {
 	onAuthStateChanged(auth, user => {
 		currentUser.value = user
+		PostMessage.send('auth', JSON.stringify(auth))
 		if (user === null) route('/login')
 	})
 }
