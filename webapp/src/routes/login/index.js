@@ -28,18 +28,39 @@ const Login = ({ user, redirectUrl }) => {
 		} catch (err) {
 			console.error(err)
 		}
-		user && route(redirectUrl, true)
+		// user && route(redirectUrl, true)
 	}, [user])
 
 
 	if (user === null) return <>
 		<Helmet title="Hello | Login" />
 		<section>
-			<form onSubmit={handleSubmit}>
-				<input ref={email} type="email" name="email" required />
-				<input ref={password} type="password" name="password" required />
-				<button>Login</button>
-			</form>
+			<article className="card-body snipcss0-0-0-1 snipcss-VloaE verticalspace55">
+				<h4 className="card-title mb-4 mt-1 text-center snipcss0-1-1-2">
+					HelloAlbania - Login
+				</h4>
+				<form className="loginForm snipcss0-1-1-3" onSubmit={handleSubmit}>
+					<div className="form-group snipcss0-2-3-4">
+						<label className="snipcss0-3-4-5">
+							Your email
+						</label>
+						<input ref={email} className="form-control loginEmail snipcss0-3-4-6" name="" placeholder="Email" type="email" pattern="^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$" required="" />
+					</div>
+					<div className="form-group snipcss0-2-3-7">
+						<label className="snipcss0-3-7-8">
+							Your password
+						</label>
+						<input ref={password} className="form-control password snipcss0-3-7-9" placeholder="******" type="password" required="" />
+						<a className="float-right mb-3 snipcss0-3-7-10" href="#forgotPasswordModal" data-toggle="modal" data-target="#forgotPasswordModal">
+							Forgot?
+						</a>
+					</div>
+					<button className="btn btn-primary btn-block snipcss0-2-3-11" type="submit">
+						Login
+					</button>
+				</form>
+			</article>
+
 		</section>
 	</>;
 	return <></>

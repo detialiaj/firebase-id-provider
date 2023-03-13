@@ -28,9 +28,9 @@ window.onload = () => {
 
 const App = () => {
 	return <div id="app">
-		<Link href="/">home</Link> {" "}
+		{/* <Link href="/">home</Link> {" "}
 		<Link href="/login" >login</Link>{" "}
-		<Link href="/signout">out</Link>{" "}
+		<Link href="/signout">out</Link>{" "} */}
 		<main>
 			<Router>
 				<Home path="/" user={currentUser.value} />
