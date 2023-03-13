@@ -4,7 +4,8 @@ export default class PostMessage {
         'user',
         'out',
         'status',
-        'customToken'
+        'customToken',
+        "resetPassword"
     ];
 
     static send(type, message = '') {

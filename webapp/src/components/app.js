@@ -7,6 +7,7 @@ import PostMessage from '../init/window-message'
 import Home from '../routes/home';
 import Login from '../routes/login';
 import SignOut from '../routes/signout';
+import ForgotPass from '../routes/forgot-password';
 
 const currentUser = signal();
 /**
@@ -36,6 +37,7 @@ const App = () => {
 				<Home path="/" user={currentUser.value} />
 				<SignOut path="/signout" user={currentUser.value} />
 				<Login path="/login" redirectUrl='/' user={currentUser.value} />
+				<ForgotPass path="/forgotPassword" user={currentUser.value} />
 			</Router>
 		</main>
 	</div>

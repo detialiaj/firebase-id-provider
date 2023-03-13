@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'preact/hooks'
-import { route } from 'preact-router'
+import { Link } from 'preact-router'
 import Helmet from 'preact-helmet'
 import { auth, signInWithEmailAndPassword } from '../../init/auth'
 import { requestCustomToken } from '../../api/auth';
 import PostMessage from '../../init/window-message';
 
-const Login = ({ user, redirectUrl }) => {
+const Login = ({ user }) => {
 	const email = useRef(null)
 	const password = useRef(null)
 
@@ -35,7 +35,7 @@ const Login = ({ user, redirectUrl }) => {
 	if (user === null) return <>
 		<Helmet title="Hello | Login" />
 		<section>
-			<article className="card-body snipcss0-0-0-1 snipcss-VloaE verticalspace55">
+			<article className="card-body verticalspace55">
 				<h4 className="card-title mb-4 mt-1 text-center snipcss0-1-1-2">
 					HelloAlbania - Login
 				</h4>
@@ -44,16 +44,22 @@ const Login = ({ user, redirectUrl }) => {
 						<label className="snipcss0-3-4-5">
 							Your email
 						</label>
-						<input ref={email} className="form-control loginEmail snipcss0-3-4-6" name="" placeholder="Email" type="email" pattern="^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$" required="" />
+						<input ref={email} className="form-control loginEmail snipcss0-3-4-6"
+							name="" placeholder="Email" type="email"
+							required
+							pattern="^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$" />
 					</div>
 					<div className="form-group snipcss0-2-3-7">
 						<label className="snipcss0-3-7-8">
 							Your password
 						</label>
-						<input ref={password} className="form-control password snipcss0-3-7-9" placeholder="******" type="password" required="" />
-						<a className="float-right mb-3 snipcss0-3-7-10" href="#forgotPasswordModal" data-toggle="modal" data-target="#forgotPasswordModal">
+						<input ref={password} className="form-control password snipcss0-3-7-9"
+							required
+							placeholder="******" type="password" />
+						<Link className="float-right mb-3 snipcss0-3-7-10"
+							href="/forgotPassword">
 							Forgot?
-						</a>
+						</Link>
 					</div>
 					<button className="btn btn-primary btn-block snipcss0-2-3-11" type="submit">
 						Login
