@@ -16,9 +16,13 @@ const currentUser = signal();
 */
 window.onload = () => {
 	onAuthStateChanged(auth, user => {
-		currentUser.value = user
-		PostMessage.send('auth', JSON.stringify(auth))
-		if (user === null) route('/login')
+		currentUser.value = user;
+		if (user === null) {
+			PostMessage.send('out', '')
+			return route('/login')
+		}
+
+		PostMessage.send('user', JSON.stringify(user))
 	})
 }
 
@@ -28,7 +32,7 @@ const App = () => {
 		<Link href="/login" >login</Link>{" "}
 		<Link href="/signout">out</Link>{" "}
 		<main>
-			<Router onChange={console.info}>
+			<Router>
 				<Home path="/" user={currentUser.value} />
 				<SignOut path="/signout" user={currentUser.value} />
 				<Login path="/login" redirectUrl='/' user={currentUser.value} />

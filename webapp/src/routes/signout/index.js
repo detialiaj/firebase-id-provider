@@ -4,12 +4,13 @@ import { auth, signOut } from '../../init/auth'
 
 const SignOut = ({ user }) => {
 	useEffect(async () => {
+		if (!user) return
 		try {
 			await signOut(auth)
 		} catch (err) {
 			console.error(err)
 		}
-	}, [])
+	}, [user])
 	return (
 		<>
 			<Helmet title="Hello | Sign out" />

@@ -1,10 +1,14 @@
+const { IFRAME_ORIGINS } = process.env;
 export default class PostMessage {
     static #types = [
-        'auth',
-        'user'];
+        'user',
+        'out',
+        'status',
+        'customToken'
+    ];
 
-    static send(type, message) {
+    static send(type, message = '') {
         if (!PostMessage.#types.includes(type)) throw `'${type}' must be one of ${PostMessage.#types.join(',')}`
-        return window.postMessage(message)
+        return IFRAME_ORIGINS.forEach(origin => (window.self !== window.top) && window.parent.postMessage({ type, message }, origin))
     }
 }

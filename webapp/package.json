@@ -35,5 +35,20 @@
       "<rootDir>/tests/__mocks__/browserMocks.js",
       "<rootDir>/tests/__mocks__/setupTests.js"
     ]
+  },
+  "env": {
+    "dev": {
+      "IFRAME_ORIGINS": [
+        "http://localhost:5000",
+        "http://localhost:5002"
+      ],
+      "API_PATH": "http://localhost:3000"
+    },
+    "prod": {
+      "IFRAME_ORIGINS": [
+        "http://localhost:5000",
+        "http://localhost:5002"
+      ]
+    }
   }
 }

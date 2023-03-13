@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'preact/hooks'
 import { route } from 'preact-router'
 import Helmet from 'preact-helmet'
 import { auth, signInWithEmailAndPassword } from '../../init/auth'
+import { requestCustomToken } from '../../api/auth';
+import PostMessage from '../../init/window-message';
 
 const Login = ({ user, redirectUrl }) => {
 	const email = useRef(null)
@@ -17,7 +19,18 @@ const Login = ({ user, redirectUrl }) => {
 		}
 	}
 
-	useEffect(() => user && route(redirectUrl,true), [user])
+	useEffect(async () => {
+		if (!user) return;
+		try {
+			const response = await requestCustomToken(await user.getIdToken())
+			const { data: { customToken } } = response;
+			PostMessage.send('customToken', customToken);
+		} catch (err) {
+			console.error(err)
+		}
+		user && route(redirectUrl, true)
+	}, [user])
+
 
 	if (user === null) return <>
 		<Helmet title="Hello | Login" />
